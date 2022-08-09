@@ -9,11 +9,19 @@ const getQuestions = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/questions.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
+        console.log('getQuestions response.data===', response.data);
         resolve(Object.values(response.data));
       } else {
         resolve([]);
       }
     })
+    .catch((error) => reject(error));
+});
+
+// GET SINGLE QUESTION
+const getSingleQuestions = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/questions/${firebaseKey}.json`)
+    .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });
 
@@ -30,6 +38,13 @@ const createQuestions = (questionObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// UPDATE QUESTIONS
+const updateQuestions = (questionObj) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/questions/${questionObj.firebaseKey}.json`, questionObj)
+    .then(() => getQuestions().then(resolve))
+    .catch(reject);
+});
+
 // DELETE QUESTIONS
 const deleteQuestions = (firebaseKey) =>
   new Promise((resolve, reject) => {
@@ -41,16 +56,10 @@ const deleteQuestions = (firebaseKey) =>
       .catch((error) => reject(error));
   });
 
-// UPDATE QUESTIONS
-const updateQuestions = (questionObj) => new Promise((resolve, reject) => {
-  axios.patch(`${dbUrl}/questions/${questionObj.firebaseKey}.json`, questionObj)
-    .then(() => getQuestions().then(resolve))
-    .catch(reject);
-});
-
 export {
   createQuestions,
   getQuestions,
-  deleteQuestions,
   updateQuestions,
+  deleteQuestions,
+  getSingleQuestions,
 };
