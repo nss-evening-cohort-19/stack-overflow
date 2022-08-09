@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getQuestions } from '../../../api/questionData';
 import QuestionForm from '../../../components/form/QuestionForm';
+import { getSingleQuestions } from '../../../api/questionData';
 
 export default function EditQuestion() {
   const [editQuestions, setEditQuestions] = useState({});
@@ -9,7 +9,7 @@ export default function EditQuestion() {
   const { firebaseKey } = router.query;
 
   useEffect(() => {
-    getQuestions(firebaseKey).then(setEditQuestions);
+    getSingleQuestions(firebaseKey).then(setEditQuestions);
   }, [firebaseKey]);
   return (
     <QuestionForm obj={editQuestions} />

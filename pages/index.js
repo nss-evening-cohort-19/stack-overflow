@@ -1,33 +1,39 @@
-import React, { useEffect } from 'react';
-import { signOut } from '../utils/auth';
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useAuth } from '../utils/context/authContext';
-import { createQuestions } from '../api/questionData';
+import { getQuestions } from '../api/questionData';
+// import QuestionCard from '../components/QuestionCard';
+
+const isBrowser = typeof window !== 'undefined';
+
+const QuestionCard = dynamic(
+  () => import('../components/QuestionCard'),
+  { ssr: false },
+);
 
 function Home() {
+  const [questions, setQuestions] = useState([]);
   const { user } = useAuth();
 
+  const getAllTheQuestions = () => {
+    getQuestions(user.uid).then(setQuestions);
+  };
+
   useEffect(() => {
-    createQuestions();
+    getAllTheQuestions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
-        Sign Out
-      </button>
+  return isBrowser ? (
+    <div className="text-center my-4">
+      <title>All Questions</title>
+      <div className="d-flex flex-wrap">
+        {questions.map((question, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <QuestionCard key={i} questionObj={question} onUpdate={getAllTheQuestions} />
+        ))}
+      </div>
     </div>
-  );
+  ) : null;
 }
-
 export default Home;
