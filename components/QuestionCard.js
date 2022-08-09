@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteQuestions } from '../api/questionData';
 
@@ -16,7 +17,7 @@ export default function QuestionCard({ questionObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{questionObj.title}</Card.Title>
         <p className="card-text">{questionObj.description}</p>
-        <Link href={`/question/edit/${questionObj.firebaseKey}`} passHref>
+        <Link href={`/questions/edit/${questionObj.firebaseKey}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisQuestion} className="m-2">DELETE</Button>
@@ -30,6 +31,7 @@ QuestionCard.propTypes = {
     firebaseKey: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    uid: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
