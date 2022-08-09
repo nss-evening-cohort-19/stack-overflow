@@ -1,8 +1,14 @@
+import React, { useEffect } from 'react';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import { createQuestions } from '../api/questionData';
 
 function Home() {
   const { user } = useAuth();
+
+  useEffect(() => {
+    createQuestions();
+  }, []);
 
   return (
     <div
@@ -14,6 +20,7 @@ function Home() {
         margin: '0 auto',
       }}
     >
+
       <h1>Hello {user.displayName}! </h1>
       <p>Click the button below to logout!</p>
       <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
