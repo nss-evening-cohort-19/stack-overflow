@@ -19,9 +19,9 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link passHref href="/">
+              <Link passHref href="/questions/new">
                 <a className="nav-link">
-                  Home
+                  Add a question
                 </a>
               </Link>
             </li>
