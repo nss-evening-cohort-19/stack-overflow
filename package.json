@@ -2,7 +2,7 @@
   "name": "stack-overflow",
   "private": true,
   "version": "1.0.0",
-  "author": "Kenneth Chittaphong",
+  "author": "Kenneth Chittaphong, Cody Clark, Nick Scrimale, Tatiana Pronoza ",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
