@@ -15,6 +15,5 @@ export default function Loading() {
         <span className="visually-hidden">Loading...</span>
       </div>
     </div>
-
   );
 }

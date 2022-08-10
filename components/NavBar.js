@@ -36,31 +36,11 @@ export default function NavBar() {
                   Home
                 </a>
               </Link>
-              <Link passHref href="/">
-                <a className="nav-link">
-                  Questions
-                </a>
-              </Link>
-              <Link passHref href="/">
+              <Link passHref href="/questions/new">
                 <a className="nav-link">
                   Add a Question
                 </a>
               </Link>
-              {/* <Link passHref href="/">
-                <a className="nav-link">
-                  Tags
-                </a>
-              </Link>
-              <Link passHref href="/">
-                <a className="nav-link">
-                  Users
-                </a>
-              </Link>
-              <Link passHref href="/">
-                <a className="nav-link">
-                  Companies
-                </a>
-              </Link> */}
             </li>
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out

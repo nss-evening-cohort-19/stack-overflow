@@ -1,6 +1,25 @@
+
 # React/Next.js Template
 
 [See Live Demo of this Template](https://drt-next-js-template.netlify.app/)
+=======
+# MVP
+
+Create Questions
+- As an authenticated user, you should be able to click Questions and it navigates you to the Ask a question form.
+- As an authenticated user, you should be able to create and post your question.
+
+Read Questions
+- As an authenticated user, you should be able to see all posted questions
+
+Update Questions
+- As an authenticated user, you should be able to update only questions that you have posted.
+- As an authenticated user, you should be able to edit and update your comment.
+
+Delete Questions
+- As an authenticated user, you should be able to delete posts you have made.
+- As an authenticated user, you should be able to delete comments you have made.
+
 
 ## Topics
 - [Get Started](#get-started)
