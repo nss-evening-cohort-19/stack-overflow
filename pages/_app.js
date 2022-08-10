@@ -9,7 +9,6 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     import('bootstrap/dist/js/bootstrap');
   }, []);
-
   return (
     <AuthProvider>
       {/* gives children components access to user and auth methods */}

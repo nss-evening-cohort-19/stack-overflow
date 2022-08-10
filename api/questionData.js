@@ -6,6 +6,11 @@ const dbUrl = clientCredentials.databaseURL;
 
 // GET QUESTION
 const getQuestions = (uid) => new Promise((resolve, reject) => {
+  console.warn('getQuestions uid ===', uid);
+  axios.get(`${dbUrl}/questions.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response) => {
+      if (response.data) {
+        console.warn('getQuestions response.data ===', response.data);
   axios.get(`${dbUrl}/questions.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
