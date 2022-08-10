@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
 
@@ -10,6 +11,10 @@ const getQuestions = (uid) => new Promise((resolve, reject) => {
     .then((response) => {
       if (response.data) {
         console.warn('getQuestions response.data ===', response.data);
+  axios.get(`${dbUrl}/questions.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((response) => {
+      if (response.data) {
+        console.log('getQuestions response.data===', response.data);
         resolve(Object.values(response.data));
       } else {
         resolve([]);
@@ -46,14 +51,15 @@ const updateQuestions = (questionObj) => new Promise((resolve, reject) => {
 });
 
 // DELETE QUESTIONS
-const deleteQuestions = (firebaseKey) => new Promise((resolve, reject) => {
-  axios
-    .delete(`${dbUrl}/questions/${firebaseKey}.json`)
-    .then(() => {
-      getQuestions(firebaseKey).then((questionsArray) => resolve(questionsArray));
-    })
-    .catch((error) => reject(error));
-});
+const deleteQuestions = (firebaseKey) =>
+  new Promise((resolve, reject) => {
+    axios
+      .delete(`${dbUrl}/questions/${firebaseKey}.json`)
+      .then(() => {
+        getQuestions(firebaseKey).then((questionsArray) => resolve(questionsArray));
+      })
+      .catch((error) => reject(error));
+  });
 
 export {
   createQuestions,
