@@ -5,22 +5,25 @@ import { clientCredentials } from '../utils/client';
 const dbUrl = clientCredentials.databaseURL;
 
 // GET QUESTION
-const getQuestions = (uid) => new Promise((resolve, reject) => {
-  console.warn('getQuestions uid ===', uid);
-  axios.get(`${dbUrl}/questions.json?orderBy="uid"&equalTo="${uid}"`)
+const getQuestions = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/questions.json?`)
     .then((response) => {
       if (response.data) {
         console.warn('getQuestions response.data ===', response.data);
-  axios.get(`${dbUrl}/questions.json?orderBy="uid"&equalTo="${uid}"`)
-    .then((response) => {
-      if (response.data) {
-        console.log('getQuestions response.data===', response.data);
-        resolve(Object.values(response.data));
-      } else {
-        resolve([]);
+        axios.get(`${dbUrl}/questions.json?`)
+          // eslint-disable-next-line no-shadow
+          .then((response) => {
+            if (response.data) {
+              // eslint-disable-next-line no-console
+              console.log('getQuestions response.data===', response.data);
+              resolve(Object.values(response.data));
+            } else {
+              resolve([]);
+            }
+          })
+          .catch((error) => reject(error));
       }
-    })
-    .catch((error) => reject(error));
+    });
 });
 
 // GET SINGLE QUESTION

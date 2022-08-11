@@ -1,12 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 // import React, { useState } from 'react';
-import Link from 'next/link';
-import { Button } from 'react-bootstrap';
-
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
 import { signOut } from '../utils/auth';
 
 export default function NavBar() {
-  // const [questions] = useState([]);
   // const [filteredResults, setFilteredResults] = useState([]);
   // const [searchInput, setSearchInput] = useState('');
 
@@ -18,37 +19,26 @@ export default function NavBar() {
   //   } else { setFilteredResults(questions); }
   // };
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-      <div className="container-fluid">
-        <Link passHref href="/">
-          <a className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
-            Stack-OverFill
-          </a>
-        </Link>
-        <Button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </Button>
-
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <Link passHref href="/">
-                <a className="nav-link">
-                  Home
-                </a>
-              </Link>
-              <Link passHref href="/questions/new">
-                <a className="nav-link">
-                  Add a Question
-                </a>
-              </Link>
-            </li>
-            <Button type="button" className="btn btn-danger" onClick={signOut}>
-              Sign Out
-            </Button>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar bg="light" variant="light">
+      <Container>
+        <Navbar.Brand href="/">Stack Overfill</Navbar.Brand>
+        <Nav className="me-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/questions/new">Add a question</Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
+        </Nav>
+      </Container>
+      <Form className="d-flex">
+        <Form.Control
+          type="search"
+          placeholder="Search..."
+          className="me-2"
+          aria-label="Search"
+        />
+      </Form>
+      <button type="button" className="btn btn-primary btn-lg copy-btn" onClick={signOut}>
+        Sign Out
+      </button>
+    </Navbar>
   );
 }
