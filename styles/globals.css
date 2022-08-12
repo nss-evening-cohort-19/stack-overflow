@@ -1,5 +1,4 @@
 @import 'bootstrap/dist/css/bootstrap.css';
-
 html,
 body {
   padding: 0;
@@ -7,16 +6,20 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #88effd;
+  background-color: white;
+}
+
+.SideBar {
+  height: 100%;
+  width: 350px;
+  background-color: antiquewhite;
 }
