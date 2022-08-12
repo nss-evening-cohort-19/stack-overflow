@@ -14,11 +14,10 @@ export default function QuestionCard({ questionObj, onUpdate }) {
       deleteQuestions(questionObj.firebaseKey).then(() => onUpdate());
     }
   };
-
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Body>
-        <Card.Title>{questionObj.title}</Card.Title>
+        <a href={`/questions/${questionObj?.firebaseKey}`}>{questionObj.title}</a>
         <p className="card-text">{questionObj.description}</p>
         {uid === questionObj.uid ? (
           <>
@@ -33,7 +32,6 @@ export default function QuestionCard({ questionObj, onUpdate }) {
     </Card>
   );
 }
-
 QuestionCard.propTypes = {
   questionObj: PropTypes.shape({
     firebaseKey: PropTypes.string,

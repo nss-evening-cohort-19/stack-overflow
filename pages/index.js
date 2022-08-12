@@ -9,11 +9,9 @@ import SideBar from '../components/SideBar';
 function Home() {
   const [questions, setQuestions] = useState([]);
   const { user } = useAuth();
-
   const getAllTheQuestions = () => {
     getQuestions(user.uid).then(setQuestions);
   };
-
   useEffect(() => {
     getAllTheQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
