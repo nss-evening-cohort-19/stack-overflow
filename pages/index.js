@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Link from 'next/link';
 import { useAuth } from '../utils/context/authContext';
 import { getQuestions } from '../api/questionData';
 import QuestionCard from '../components/QuestionCard';
+import SideBar from '../components/SideBar';
 
 function Home() {
   const [questions, setQuestions] = useState([]);
@@ -17,14 +20,21 @@ function Home() {
   }, []);
 
   return (
-    <div className="text-center my-4">
-      <title>All Questions</title>
-      <div className="d-flex flex-wrap">
-        {questions.map((question) => (
-          <QuestionCard key={question.firebaseKey} questionObj={question} onUpdate={getAllTheQuestions} />
-        ))}
+    <>
+      <div className="SideBar">
+        <SideBar />
       </div>
-    </div>
+      <div className="text-center my-4">
+        <Link href="/questions/new" passHref>
+          <Button variant="info">Create New Question</Button>
+        </Link>
+        <div className="d-flex flex-wrap">
+          {questions.map((question) => (
+            <QuestionCard key={question.firebaseKey} questionObj={question} onUpdate={getAllTheQuestions} />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 export default Home;

@@ -32,11 +32,11 @@ function QuestionForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateQuestions(formInput)
-        .then(() => router.push('/questions/new'));
+        .then(() => router.push('/'));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createQuestions(payload).then(() => {
-        router.push('/questions/new');
+        router.push('/');
       });
     }
   };

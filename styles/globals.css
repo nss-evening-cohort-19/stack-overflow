@@ -18,5 +18,11 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: white;
+}
+
+.SideBar {
+  height: 100%;
+  width: 350px;
+  background-color: antiquewhite;
 }
