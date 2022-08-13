@@ -4,6 +4,7 @@ import { Card } from 'react-bootstrap';
 import { getAnswers } from '../api/answerData';
 
 export default function AnswerCard({ answerObj }) {
+
   const [viewAnswer, setViewAnswer] = useState({});
   const { firebaseKey } = answerObj;
 
@@ -11,6 +12,9 @@ export default function AnswerCard({ answerObj }) {
   useEffect(() => {
     getAnswers(firebaseKey).then(setViewAnswer);
   }, [firebaseKey]);
+
+
+  // getAnswersForTheQuestion(answerObj.firebaseKey);
 
   return (
     <div>

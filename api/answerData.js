@@ -25,6 +25,12 @@ const addAnswer = (answerObj, uid) => new Promise((resolve, reject) => {
     }).catch(reject);
 });
 
+const getAnswersForTheQuestion = (questionFirebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/questions.json?orderBy="team"&equalTo="${questionFirebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 const updateAnswer = (answerObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/answers/${answerObj.firebaseKey}.json`, answerObj)
     .then(() => getAnswers(answerObj?.firebaseKey))
@@ -44,4 +50,5 @@ export {
   addAnswer,
   deleteAnswer,
   updateAnswer,
+  getAnswersForTheQuestion,
 };
