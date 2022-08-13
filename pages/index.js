@@ -34,7 +34,7 @@ function Home() {
         <SideBar />
       </div>
       <div className="text-center my-4">
-        <title>Stack Overflow</title>
+        <title>Stack Overflow </title>
         <Form.Control icon="search" placeholder="Search Questions" onChange={(e) => searchItems(e.target.value)} />
         {searchInput.length > 1 ? (
           <div className="d-flex flex-wrap">
