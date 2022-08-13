@@ -30,6 +30,8 @@ AnswerContainer.propTypes = {
   obj: PropTypes.shape({
     firebaseKey: PropTypes.string,
     description: PropTypes.string,
+    questionID: PropTypes.string,
     uid: PropTypes.string,
+    questionId: PropTypes.string,
   }).isRequired,
 };

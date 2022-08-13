@@ -5,7 +5,7 @@ const dbUrl = clientCredentials.databaseURL;
 
 // Get Answer
 const getAnswers = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/answers/${firebaseKey}.json`)
+  axios.get(`${dbUrl}/questions/${firebaseKey}.json`)
     .then((response) => {
       // eslint-disable-next-line no-console
       console.log('data ===', response.data);
@@ -23,6 +23,12 @@ const addAnswer = (answerObj, uid) => new Promise((resolve, reject) => {
         getAnswers(uid).then(resolve);
       });
     }).catch(reject);
+});
+
+const getSingleAnswer = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/answers/${firebaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch(reject);
 });
 
 const getAnswersForTheQuestion = (questionFirebaseKey) => new Promise((resolve, reject) => {
@@ -51,4 +57,5 @@ export {
   deleteAnswer,
   updateAnswer,
   getAnswersForTheQuestion,
+  getSingleAnswer,
 };

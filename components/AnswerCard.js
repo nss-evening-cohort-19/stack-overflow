@@ -18,7 +18,7 @@ export default function AnswerCard({ answerObj }) {
     <div>
       {viewAnswer && viewAnswer.answer && viewAnswer.answer.map((answer, idx) => (
         // eslint-disable-next-line react/no-array-index-key
-        <Card key={idx} style={{ width: '18rem', margin: '5px' }}>
+        <Card key={idx} style={{ width: '55rem', margin: '5px' }}>
           <Card.Body>
             <div>{answer}</div>
           </Card.Body>
@@ -33,5 +33,6 @@ AnswerCard.propTypes = {
     firebaseKey: PropTypes.string,
     description: PropTypes.string,
     uid: PropTypes.string,
+    questionId: PropTypes.string,
   }).isRequired,
 };
