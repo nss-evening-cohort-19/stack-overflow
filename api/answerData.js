@@ -7,6 +7,7 @@ const dbUrl = clientCredentials.databaseURL;
 const getAnswers = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/answers/${firebaseKey}.json`)
     .then((response) => {
+      // eslint-disable-next-line no-console
       console.log('data ===', response.data);
       resolve(response.data);
     })
