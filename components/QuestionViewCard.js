@@ -6,9 +6,11 @@ import { getSingleQuestions } from '../api/questionData';
 export default function QuestionViewCard({ questionObj }) {
   getSingleQuestions(questionObj.firebaseKey);
   return (
-    <Card style={{ width: '18rem', margin: '5px' }}>
+    <Card style={{ width: '55rem', margin: '5px' }}>
       <Card.Body>
-        <div>{questionObj.title}</div>
+        <div>
+          <h3>{questionObj.title}</h3>
+        </div>
         <div>{questionObj.description}</div>
       </Card.Body>
     </Card>

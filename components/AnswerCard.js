@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import { getAnswers } from '../api/answerData';
+import { getAnswersForTheQuestion } from '../api/answerData';
 
 export default function AnswerCard({ answerObj }) {
-  getAnswers(answerObj.firebaseKey);
+  getAnswersForTheQuestion(answerObj.firebaseKey);
   return (
     <Card style={{ width: '18rem', margin: '5px' }}>
       <Card.Body>

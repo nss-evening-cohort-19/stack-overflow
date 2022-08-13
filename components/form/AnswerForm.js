@@ -43,12 +43,12 @@ const AnswerForm = ({ obj }) => {
 
   return (
     <Form onSubmit={handleSubmit} className="answer-grid">
-      <h2 className="answer-form">{obj.firebaseKey ? 'Enter' : 'Enter'} Your Answer</h2>
+      <h4 className="answer-form">{obj.firebaseKey ? 'Enter' : 'Enter'} Your Answer</h4>
       <FloatingLabel controlId="floatingInput1" label="Your Answer" className="mb-3">
         <Form.Control type="text" placeholder="Enter Your Answer" name="answer" value={formInput.name} onChange={handleChange} required />
       </FloatingLabel>
       <div className="answer-grid">
-        <Button type="submit">{obj.firebaseKey ? 'Create' : 'Create'} Team</Button>
+        <Button type="submit">{obj.firebaseKey ? 'Submit' : 'Submit'} Answers</Button>
       </div>
     </Form>
   );
@@ -58,6 +58,7 @@ AnswerForm.propTypes = {
   obj: PropTypes.shape({
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
   }),
 };
 
