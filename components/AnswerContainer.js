@@ -1,27 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../utils/context/authContext';
-import { getQuestions } from '../api/questionData';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+// import { useAuth } from '../utils/context/authContext';
 import AnswerCard from './AnswerCard';
+import { getAnswers } from '../api/answerData';
 
-function AnswerContainer() {
-  const [answers, setAnswers] = useState([]);
-  const { user } = useAuth();
-  const getAllTheAnswers = () => {
-    getQuestions(user.uid).then(setAnswers);
+export default function AnswerContainer({ obj }) {
+  const [, setAnswers] = useState({});
+  // const { user } = useAuth();
+  const getAllTheAnswers = async () => {
+    await getAnswers(obj.uid).then(setAnswers);
   };
-  useEffect(() => {
-    getAllTheAnswers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   getAllTheAnswers();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [user.uid]);
 
   return (
     <>
       <div className="d-flex flex-wrap">
-        {answers.map((answer) => (
-          <AnswerCard key={answer.firebaseKey} questionObj={answer} onUpdate={getAllTheAnswers} />
-        ))}
+        {/* {answers && answers.answer && answers.answer.length && answers.answer.map((answer) => (<AnswerCard key={answer.firebaseKey} answerObj={answer} onUpdate={getAllTheAnswers} />
+        ))} */}
+        <AnswerCard key={obj.firebaseKey} answerObj={obj} onUpdate={getAllTheAnswers} />
       </div>
     </>
   );
 }
-export default AnswerContainer;
+
+AnswerContainer.propTypes = {
+  obj: PropTypes.shape({
+    firebaseKey: PropTypes.string,
+    description: PropTypes.string,
+    uid: PropTypes.string,
+  }).isRequired,
+};

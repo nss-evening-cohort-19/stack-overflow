@@ -6,7 +6,11 @@ const dbUrl = clientCredentials.databaseURL;
 // Get Answer
 const getAnswers = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/answers/${firebaseKey}.json`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((response) => {
+      // eslint-disable-next-line no-console
+      console.log('data ===', response.data);
+      resolve(response.data);
+    })
     .catch((error) => reject(error));
 });
 
@@ -29,7 +33,7 @@ const getAnswersForTheQuestion = (questionFirebaseKey) => new Promise((resolve, 
 
 const updateAnswer = (answerObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/answers/${answerObj.firebaseKey}.json`, answerObj)
-    .then(() => getAnswers(answerObj))
+    .then(() => getAnswers(answerObj?.firebaseKey))
     .then(resolve)
     .catch(reject);
 });

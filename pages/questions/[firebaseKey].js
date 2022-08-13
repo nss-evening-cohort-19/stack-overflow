@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getSingleQuestions } from '../../api/questionData';
 import QuestionViewCard from '../../components/QuestionViewCard';
 import AnswerForm from '../../components/form/AnswerForm';
+import { getAnswers } from '../../api/answerData';
 // import AnswerContainer from '../../components/AnswerContainer';
 
 export default function ViewAnswerCard() {
@@ -14,7 +14,7 @@ export default function ViewAnswerCard() {
 
   // make a call to the API to get the author data
   useEffect(() => {
-    getSingleQuestions(firebaseKey).then(setViewAnswer);
+    getAnswers(firebaseKey).then(setViewAnswer);
   }, [firebaseKey]);
 
   // pass object to form
