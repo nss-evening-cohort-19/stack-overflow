@@ -16,7 +16,7 @@ export default function QuestionCard({ questionObj, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '55rem', margin: '10px' }}>
+    <Card style={{ width: '40rem', margin: '10px', textAlign: 'left' }}>
       <Card.Body>
         <h5>
           <a href={`/questions/${questionObj?.firebaseKey}`}>{questionObj.title}</a>

@@ -11,6 +11,7 @@ export default function AnswerCard({ answerObj }) {
   useEffect(() => {
     getAnswers(firebaseKey).then(setViewAnswer);
   }, [firebaseKey]);
+
   // getAnswersForTheQuestion(answerObj.firebaseKey);
 
   return (

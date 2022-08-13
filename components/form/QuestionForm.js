@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import PropTypes, { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel, Button } from 'react-bootstrap';
@@ -10,13 +10,13 @@ const initialState = {
   title: '',
   description: '',
 };
-function QuestionForm({ questionObj }) {
+function QuestionForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
   useEffect(() => {
-    if (object.firebaseKey) setFormInput(questionObj);
-  }, [questionObj, user]);
+    if (obj.firebaseKey) setFormInput(obj);
+  }, [obj, user]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -26,7 +26,7 @@ function QuestionForm({ questionObj }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (questionObj.firebaseKey) {
+    if (obj.firebaseKey) {
       updateQuestions(formInput)
         .then(() => router.push('/'));
     } else {
@@ -38,7 +38,7 @@ function QuestionForm({ questionObj }) {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{questionObj.firebaseKey ? 'Update' : 'Create'} public question</h2>
+      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} public question</h2>
       <FloatingLabel controlId="floatingTextarea" label="Title" className="mb-3">
         <Form.Control
           type="text"
@@ -60,19 +60,18 @@ function QuestionForm({ questionObj }) {
           required
         />
       </FloatingLabel>
-      <Button type="submit">{questionObj.firebaseKey ? 'Update' : 'Create'} Question</Button>
+      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Question</Button>
     </Form>
   );
 }
 QuestionForm.propTypes = {
-  questionObj: PropTypes.shape({
+  obj: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
-    uid: PropTypes.string,
   }),
 };
 QuestionForm.defaultProps = {
-  questionObj: initialState,
+  obj: initialState,
 };
 export default QuestionForm;
