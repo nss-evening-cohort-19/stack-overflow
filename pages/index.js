@@ -24,9 +24,9 @@ function Home() {
       </div>
       <div className="text-center my-4">
         <Link href="/questions/new" passHref>
-          <Button variant="info">Create New Question</Button>
+          <Button variant="info">Ask Question</Button>
         </Link>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
           {questions.map((question) => (
             <QuestionCard key={question.firebaseKey} questionObj={question} onUpdate={getAllTheQuestions} />
           ))}
