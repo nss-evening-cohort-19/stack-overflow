@@ -12,27 +12,37 @@ const initialState = {
 };
 
 const AnswerForm = ({ obj }) => {
+  // eslint-disable-next-line no-console
+  console.log('obj value ===', obj);
   const [formInput, setFormInput] = useState(initialState);
+  const [answers, setAnswers] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj.firebaseKey) {
+      setFormInput(obj);
+      if (obj && obj?.answer && obj?.answer.length) {
+        setAnswers(obj.answer);
+      }
+    }
   }, [obj]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     setFormInput((prevState) => ({
       ...prevState,
-      [name]: value,
+      answer: answers.concat([value]),
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
+      // eslint-disable-next-line no-console
+      console.log('form value ===', formInput, answers);
       updateAnswer(formInput)
-        .then(() => router.push(`/answers/${obj.firebaseKey}`));
+        .then(() => router.push(`/answer/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       addAnswer(payload).then(() => {
@@ -58,6 +68,7 @@ AnswerForm.propTypes = {
   obj: PropTypes.shape({
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
+    answer: PropTypes.arrayOf(PropTypes.string),
   }),
 };
 

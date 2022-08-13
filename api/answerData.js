@@ -6,7 +6,10 @@ const dbUrl = clientCredentials.databaseURL;
 // Get Answer
 const getAnswers = (firebaseKey) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/answers/${firebaseKey}.json`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((response) => {
+      console.log('data ===', response.data);
+      resolve(response.data);
+    })
     .catch((error) => reject(error));
 });
 
@@ -23,7 +26,7 @@ const addAnswer = (answerObj, uid) => new Promise((resolve, reject) => {
 
 const updateAnswer = (answerObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/answers/${answerObj.firebaseKey}.json`, answerObj)
-    .then(() => getAnswers(answerObj))
+    .then(() => getAnswers(answerObj?.firebaseKey))
     .then(resolve)
     .catch(reject);
 });
