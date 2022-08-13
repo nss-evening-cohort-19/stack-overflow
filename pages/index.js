@@ -23,7 +23,7 @@ function Home() {
         <SideBar />
       </div>
       <div className="text-center my-4">
-        <title>Stack Overflow</title>
+        <title>Stack Overflow </title>
         <Link href="/questions/new" passHref>
           <Button variant="info">Ask Question</Button>
         </Link>
