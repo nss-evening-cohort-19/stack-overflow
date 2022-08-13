@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import PropTypes, { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel, Button } from 'react-bootstrap';
@@ -15,7 +15,7 @@ function QuestionForm({ obj }) {
   const router = useRouter();
   const { user } = useAuth();
   useEffect(() => {
-    if (object.firebaseKey) setFormInput(obj);
+    if (obj.firebaseKey) setFormInput(obj);
   }, [obj, user]);
   const handleChange = (e) => {
     const { name, value } = e.target;

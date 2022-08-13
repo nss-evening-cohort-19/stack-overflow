@@ -15,7 +15,7 @@ export default function NavBar() {
   return (
     <Navbar bg="light" variant="light">
       <Container>
-        <Navbar.Brand href="/">Stack Overfill</Navbar.Brand>
+        <Navbar.Brand href="/">Stack Overflow</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/questions/new">Add a question</Nav.Link>
