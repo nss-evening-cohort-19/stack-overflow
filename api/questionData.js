@@ -46,6 +46,13 @@ const createQuestions = (questionObj) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// TODO: GET A SINGLE AUTHOR'S BOOKS
+const getQuestionAnswers = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/questions.json?orderBy="questionId"&equalTo="${firebaseKey}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
+
 // UPDATE QUESTIONS
 const updateQuestions = (questionObj) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/questions/${questionObj.firebaseKey}.json`, questionObj)
@@ -70,4 +77,5 @@ export {
   updateQuestions,
   deleteQuestions,
   getSingleQuestions,
+  getQuestionAnswers,
 };

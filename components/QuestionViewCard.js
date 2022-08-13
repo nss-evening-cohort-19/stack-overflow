@@ -19,6 +19,7 @@ export default function QuestionViewCard({ questionObj }) {
 
 QuestionViewCard.propTypes = {
   questionObj: PropTypes.shape({
+    answer: PropTypes.string,
     firebaseKey: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,

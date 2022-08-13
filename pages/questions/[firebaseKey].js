@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import QuestionViewCard from '../../components/QuestionViewCard';
 import AnswerForm from '../../components/form/AnswerForm';
 import { getAnswers } from '../../api/answerData';
-// import AnswerContainer from '../../components/AnswerContainer';
+import AnswerContainer from '../../components/AnswerContainer';
 
 export default function ViewAnswerCard() {
   const [viewAnswer, setViewAnswer] = useState({});
@@ -21,7 +21,7 @@ export default function ViewAnswerCard() {
   return (
     <>
       <QuestionViewCard questionObj={viewAnswer} />
-      {/* <AnswerContainer obj={viewAnswer} /> */}
+      <AnswerContainer obj={viewAnswer} />
       <AnswerForm obj={viewAnswer} />
     </>
 

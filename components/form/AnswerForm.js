@@ -66,13 +66,10 @@ const AnswerForm = ({ obj }) => {
 
 AnswerForm.propTypes = {
   obj: PropTypes.shape({
-    description: PropTypes.string,
     firebaseKey: PropTypes.string,
-
     answer: PropTypes.arrayOf(PropTypes.string),
-
     uid: PropTypes.string,
-
+    questionId: PropTypes.string,
   }),
 };
 

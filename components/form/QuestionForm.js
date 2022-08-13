@@ -10,13 +10,13 @@ const initialState = {
   title: '',
   description: '',
 };
-function QuestionForm({ obj }) {
+function QuestionForm({ questionObj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
   useEffect(() => {
-    if (object.firebaseKey) setFormInput(obj);
-  }, [obj, user]);
+    if (object.firebaseKey) setFormInput(questionObj);
+  }, [questionObj, user]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormInput((prevState) => ({
@@ -26,7 +26,7 @@ function QuestionForm({ obj }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (questionObj.firebaseKey) {
       updateQuestions(formInput)
         .then(() => router.push('/'));
     } else {
@@ -38,7 +38,7 @@ function QuestionForm({ obj }) {
   };
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} public question</h2>
+      <h2 className="text-white mt-5">{questionObj.firebaseKey ? 'Update' : 'Create'} public question</h2>
       <FloatingLabel controlId="floatingTextarea" label="Title" className="mb-3">
         <Form.Control
           type="text"
@@ -60,18 +60,19 @@ function QuestionForm({ obj }) {
           required
         />
       </FloatingLabel>
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Question</Button>
+      <Button type="submit">{questionObj.firebaseKey ? 'Update' : 'Create'} Question</Button>
     </Form>
   );
 }
 QuestionForm.propTypes = {
-  obj: PropTypes.shape({
+  questionObj: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
     firebaseKey: PropTypes.string,
+    uid: PropTypes.string,
   }),
 };
 QuestionForm.defaultProps = {
-  obj: initialState,
+  questionObj: initialState,
 };
 export default QuestionForm;
