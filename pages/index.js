@@ -42,11 +42,7 @@ function Home() {
             ))}
           </div>
         ) : (
-          <div className="d-flex flex-wrap">
-            {questions.map((question) => (
-              <QuestionCard key={question.firebaseKey} questionObj={question} onUpdate={getAllTheQuestions} />
-            ))}
-          </div>
+          <div className="d-flex flex-wrap" />
         )}
 
       </div>
